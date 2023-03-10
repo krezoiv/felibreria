@@ -10,28 +10,30 @@
         (ngSubmit)="insertarVentas()">
            <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Fecha</span>
-            <input type = "date" name = "date"> 
+            <input type = "date" name = "date" formControlName="fecha"> &nbsp;&nbsp;
+            <button (click)="open();" type="button" class="btn btn-success"><i class="fa-sharp fa-solid fa-arrow-right"></i>Aperturar</button>
+
            </div>
 
+          <div class="input-group mb-3">
+            <select class="form-select" aria-label="Default select example">
+                <option value="negocio.negocio" *ngFor="let negocio of negocios" >{{negocio.negocio}}</option>
+               
+              </select>
+          </div>
+
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Ventas Libreria</span>
-                <input type="number" class="form-control" placeholder="Q ." aria-label="Username" aria-describedby="basic-addon1">
+                <span class="input-group-text" id="basic-addon1">Venta</span>
+                <input type="number" class="form-control" placeholder="Q ." formControlName="ventas_libreria" aria-describedby="basic-addon1">
             </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Ventas Tienda</span>
-                <input type="number" class="form-control" placeholder="Q ." aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Ventas Impresiones</span>
-                <input type="number" class="form-control" placeholder="Q ." aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Ventas Refacciones</span>
-                <input type="number" class="form-control" placeholder="Q ." aria-label="Username" aria-describedby="basic-addon1">
-            </div>
+            
+              
+              
+              
             <div class="input-group mb-3">
                 <button type="submit" class="btn btn-info"><i class="fa-regular fa-floppy-disk"></i>&nbsp; Guardar</button>
             </div>
+            
             
         </form>
 
