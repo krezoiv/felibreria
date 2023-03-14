@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Negocios } from 'src/app/models/negocio';
+import { NegocioI, Negocios } from 'src/app/models/negocio';
 import { NegocioService } from 'src/app/services/negocio.service';
 import { VentasService } from 'src/app/services/ventas.service';
 import Swal from 'sweetalert2';
@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 })
 
 export class DepositosComponent {
-  public negocios: Negocios[]=[];
+   negocios: Negocios[] =[];
   public ventasForm = this.formBuilder.group({
     fecha: [''],
     ventas_libreria:[''],
@@ -33,9 +33,10 @@ export class DepositosComponent {
   ){}
 
   listaNegocios(){
-    this.negocioService.listarNegocio().subscribe((res: any) => {
-      console.log(res)
-      this.negocios = res;
+    this.negocioService.listarNegocio().subscribe((res : any) => {
+      
+    this.negocios = res;
+     console.log(res)
     })
   }
   open(){

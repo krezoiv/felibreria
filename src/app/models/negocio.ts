@@ -6,3 +6,8 @@ export class Negocios {
 
     ) { }
 }
+
+export interface NegocioI {
+    id_negocio : number,
+    negocio : string
+}

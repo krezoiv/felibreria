@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NegocioI, Negocios } from '../models/negocio';
+import { Observable } from 'rxjs';
 
 
 
