@@ -18,4 +18,12 @@ export class VentasService {
   insertarVentas(ventas:any){
     return this.http.post(`${this.url}/ventas`, ventas)
   }
+
+  insertarDetVta(det:any){
+    return this.http.post(`${this.url}/ventas/detalleVenta`, det)
+  }
+
+  getLastIdVentas(){
+    return this.http.get(`${this.url}/ventas/lastId`)
+  }
 }

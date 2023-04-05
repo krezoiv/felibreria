@@ -7,31 +7,31 @@
         <hr>
         <form autocomplete="off"
         [formGroup]="ventasForm"
-        (ngSubmit)="insertarVentas()">
+        >
            <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Fecha</span>
             <input type = "date" name = "date" formControlName="fecha"> &nbsp;&nbsp;
-            <button (click)="open();" type="button" class="btn btn-success"><i class="fa-sharp fa-solid fa-arrow-right"></i>Aperturar</button>
+            <button (click)="insertarVentas();" type="button" class="btn btn-success"><i class="fa-sharp fa-solid fa-arrow-right"></i>Aperturar</button>
 
            </div>
 
           <div class="input-group mb-3">
-            <select class="form-select" aria-label="Default select example">
-                <option  *ngFor="let negocio of negocios" >{{negocio.negocio}}</option>
+            <select class="form-select" aria-label="Default select example" formControlName="id_negocio">
+                <option value="{{negocio.id_negocio}}" *ngFor="let negocio of negocios" >{{negocio.negocio}}</option>
                
               </select>
           </div>
 
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Venta</span>
-                <input type="number" class="form-control" placeholder="Q ." formControlName="ventas_libreria" aria-describedby="basic-addon1">
+                <input type="number" class="form-control" placeholder="Q ." formControlName="monto" aria-describedby="basic-addon1">
             </div>
             
               
               
               
             <div class="input-group mb-3">
-                <button type="submit" class="btn btn-info"><i class="fa-regular fa-floppy-disk"></i>&nbsp; Guardar</button>
+                <button (click)="prueba();" class="btn btn-info"><i class="fa-regular fa-floppy-disk"></i>&nbsp; Guardar</button>
             </div>
             
             
@@ -44,3 +44,5 @@
 <hr>
     </div>
 </div>
+
+<!--  -->

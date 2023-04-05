@@ -15,12 +15,12 @@ import Swal from 'sweetalert2';
 
 export class DepositosComponent {
    negocios: Negocios[] =[];
+   id!: Number | any;
   public ventasForm = this.formBuilder.group({
     fecha: [''],
-    ventas_libreria:[''],
-    ventas_tienda:[''],
-    ventas_impresiones: [''],
-    ventas_refa:[''],
+    id_negocio : [''],
+    idventas:[''],
+    monto:['']
   });
 
   ngOnInit(): void {
@@ -36,12 +36,17 @@ export class DepositosComponent {
     this.negocioService.listarNegocio().subscribe((res : any) => {
       
     this.negocios = res;
-     console.log(res)
+    
     })
   }
+
   open(){
-    this.listaNegocios();
+  
   }
+
+  apertura(){
+    this.insertarVentas();
+   }
 
   insertarVentas(){
     this.ventasService.insertarVentas(this.ventasForm.value).subscribe((res:any) => {
@@ -52,7 +57,30 @@ export class DepositosComponent {
         showConfirmButton: false,
         timer: 1500
       })
-      this.ventasForm.reset();
+      this.lastId();
     })
   }
+
+  lastId(){
+    this.ventasService.getLastIdVentas().subscribe((res:any) => {
+      console.log(res);
+      this.id = res
+      console.log(this.id)
+      //this.ventasForm.controls['idventas'].setValue(res);
+    })
+  }
+
+  prueba(){
+   this.ventasService.insertarDetVta(this.ventasForm.value).subscribe((res:any) => {
+    Swal.fire({
+      position: 'top-end',
+        icon: 'success',
+        title: 'Guardado',
+        showConfirmButton: false,
+        timer: 1500
+    })
+   })
+  }
+
+  
 }
