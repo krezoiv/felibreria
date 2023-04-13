@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NegocioI, Negocios } from 'src/app/models/negocio';
+import { detalleVentas } from 'src/app/models/ventas';
 import { NegocioService } from 'src/app/services/negocio.service';
 import { VentasService } from 'src/app/services/ventas.service';
 import Swal from 'sweetalert2';
@@ -14,42 +15,44 @@ import Swal from 'sweetalert2';
 })
 
 export class DepositosComponent {
-   negocios: Negocios[] =[];
-   id!: Number | any;
+
+  public detVentas : detalleVentas[]=[];
+  negocios: Negocios[] = [];
+  id!: Number | any;
   public ventasForm = this.formBuilder.group({
     fecha: [''],
-    id_negocio : [''],
-    idventas:[''],
-    monto:['']
+    id_negocio: [''],
+    idventas: [''],
+    monto: ['']
   });
 
   ngOnInit(): void {
     this.listaNegocios();
   }
   constructor(
-    private formBuilder : FormBuilder,
-    private ventasService : VentasService,
-    private negocioService :NegocioService
-  ){}
+    private formBuilder: FormBuilder,
+    private ventasService: VentasService,
+    private negocioService: NegocioService
+  ) { }
 
-  listaNegocios(){
-    this.negocioService.listarNegocio().subscribe((res : any) => {
-      
-    this.negocios = res;
-    
+  listaNegocios() {
+    this.negocioService.listarNegocio().subscribe((res: any) => {
+
+      this.negocios = res;
+
     })
   }
 
-  open(){
-  
+  open() {
+
   }
 
-  apertura(){
+  apertura() {
     this.insertarVentas();
-   }
+  }
 
-  insertarVentas(){
-    this.ventasService.insertarVentas(this.ventasForm.value).subscribe((res:any) => {
+  insertarVentas() {
+    this.ventasService.insertarVentas(this.ventasForm.value).subscribe((res: any) => {
       Swal.fire({
         position: 'top-end',
         icon: 'success',
@@ -61,8 +64,8 @@ export class DepositosComponent {
     })
   }
 
-  lastId(){
-    this.ventasService.getLastIdVentas().subscribe((res:any) => {
+  lastId() {
+    this.ventasService.getLastIdVentas().subscribe((res: any) => {
       console.log(res);
       this.id = res
       console.log(this.id)
@@ -70,17 +73,24 @@ export class DepositosComponent {
     })
   }
 
-  prueba(){
-   this.ventasService.insertarDetVta(this.ventasForm.value).subscribe((res:any) => {
-    Swal.fire({
-      position: 'top-end',
+  guardarDetalle() {
+    this.ventasService.insertarDetVta(this.ventasForm.value).subscribe((res: any) => {
+      Swal.fire({
+        position: 'top-end',
         icon: 'success',
         title: 'Guardado',
         showConfirmButton: false,
         timer: 1500
-    })
-   })
+      })
+      
+    })    
+    this.listaVenta();
   }
 
-  
+  listaVenta(){
+    this.ventasService.listarDetalleVenta(this.ventasForm.value).subscribe((res: any) => {
+      this.detVentas = res;
+    })
+  }
+
 }

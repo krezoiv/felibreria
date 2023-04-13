@@ -26,4 +26,8 @@ export class VentasService {
   getLastIdVentas(){
     return this.http.get(`${this.url}/ventas/lastId`)
   }
+
+  listarDetalleVenta(ventas: any){
+    return this.http.post(`${this.url}/ventas/listaDetVenta`, ventas)
+  }
 }

@@ -31,11 +31,30 @@
               
               
             <div class="input-group mb-3">
-                <button (click)="prueba();" class="btn btn-info"><i class="fa-regular fa-floppy-disk"></i>&nbsp; Guardar</button>
+                <button (click)="guardarDetalle();" class="btn btn-info"><i class="fa-regular fa-floppy-disk"></i>&nbsp; Guardar</button>
             </div>
             
             
         </form>
+
+        <div>
+            <table class="table table-dark table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Negocio</th>
+                        <th>Monto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of detVentas">
+                        <td>{{data.idventas}}</td>
+                        <td>{{data.monto}}</td>
+                        <td>{{data.monto}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
     </div>
 
